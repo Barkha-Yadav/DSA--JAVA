@@ -1,5 +1,6 @@
 package arrays;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class _977_SquaresOfASortedArray {
@@ -10,6 +11,13 @@ public class _977_SquaresOfASortedArray {
         _977_SquaresOfASortedArray sq = new _977_SquaresOfASortedArray();
         int[] result = sq.sortedSquares(nums);
         System.out.println(Arrays.toString(result));
+
+        // System.out.println(Arrays.toString(nums)); array modified
+
+        int[] nums2 = {-5,-2,0,1,9,21};
+        // using approach 2
+        System.out.println(Arrays.toString(sq.sortedSquares2(nums2)));
+        // System.out.println(Arrays.toString(nums)); approach 2 does not modify the array
 
     }
 
@@ -22,5 +30,27 @@ public class _977_SquaresOfASortedArray {
         }
         Arrays.sort(nums);
         return nums;
+    }
+
+    // Approach 2
+    // time complexity: O(N)
+    // space complexity: O(N)
+    public int[] sortedSquares2(int[] nums){
+        int l = 0;
+        int r = nums.length-1;
+        int[] result = new int[nums.length];
+        int in = result.length-1;
+        while(l<=r){
+            if((nums[l]*nums[l])>=(nums[r]*nums[r])){
+                result [in] = nums[l]*nums[l];
+                l++;
+            }
+            else{
+                result[in] = nums[r]*nums[r];
+                r--;
+            }
+            in--;
+        }
+        return result;
     }
 }
