@@ -2,6 +2,7 @@ package arrays;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class _1346_CheckIfNAndItsDoubleExists {
@@ -14,6 +15,9 @@ public class _1346_CheckIfNAndItsDoubleExists {
 
         // using approach 2
         System.out.println(checkIfExist2(arr));
+
+        // using approach 3
+        System.out.println(checkIfExist3(arr));
     }
 
     // Approach 1
@@ -59,5 +63,21 @@ public class _1346_CheckIfNAndItsDoubleExists {
             map.put(arr[i],i);
         }
         return double_exists;
+    }
+
+    // Approach 3
+    // time complexity: O(N)
+    // space complexity: O(N) but less overhead than map as it do not contain pairs
+    public static boolean checkIfExist3(int[] arr){
+        HashSet<Integer> seen = new HashSet<>();
+
+        for(int num: arr){
+            if((seen.contains(num*2)) || (num%2==0 && seen.contains(num/2))){
+                return true;
+            }
+            seen.add(num);
+        }
+
+        return false;
     }
 }
