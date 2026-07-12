@@ -34,6 +34,8 @@ public class BfsTraversal {
         System.out.println();
     }
 
+    // time complexity: O(N)+O(2E)
+    // space complexity: O(N)
     public List<Integer> bfs(Integer startPoint){
         List<Integer> bfsTraversalResult = new ArrayList<>();
         Queue<Integer> queue = new LinkedList<>();
@@ -42,6 +44,7 @@ public class BfsTraversal {
         queue.add(startPoint);
         visited.add(startPoint);
 
+        // runs number of vertex time N
         while(! queue.isEmpty()){
             Integer currentNode = queue.poll();
             bfsTraversalResult.add(currentNode);
@@ -49,6 +52,7 @@ public class BfsTraversal {
             List<Integer> neighbours = adjList.get(currentNode);
 
             if(neighbours!=null){
+                // run total degrees time i.e 2E edges
                 for(Integer neighbour: neighbours){
                     if(! visited.contains(neighbour)){
                         queue.add(neighbour);
